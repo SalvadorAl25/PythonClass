@@ -24,18 +24,18 @@ class Biblioteca:
         self.ListaLibros = []
     def NumeroLibros(self):
         return len(self.ListaLibros)
-    def AnadirLibros(self,libro):
+    def AñadirLibro(self,libro):
         self.ListaLibros = self.ListaLibros + [libro]
     def MostrarBiblioteca(self):
-        print("#####################################")
+        print("#############################")
         for item in self.ListaLibros:
             item.MostrarLibro()
-        print("#####################################")
+        print("#############################")
     def BorrarLibro(self, titulo):
         encontrado = False
         posicionaborrar = -1
         for item in self.ListaLibros:
-            posicionaborrar +=1
+            posicionaborrar += 1
             if item.ObtenerTitulo() == titulo:
                 encontrado = True
                 break
@@ -43,44 +43,46 @@ class Biblioteca:
                 del self.ListaLibros[posicionaborrar]
                 print("Libro borrado correctamente!")
             else:
-                print("Libro no encotrado!")
-    def MostrarMenu():
-        print("Menu\n1) Añadir libro a la biblioteca\n2) Mostrar biblioteca\n3) Borrar libro\n4) ¿Numero de libros?\n5) Salir")
-    def AñadirLibroABiblioteca(biblioteca):
-        titulo = input("Introduzca el titulo del libro: ")
-        isbn = input("Introduzca el ISBN del libro: ")
-        autornombre = input("Introduzca el nombre del autor: ")
-        autorapellidos = input("Introduzca el apellido del autor: ")
-        autor = Autor(autornombre,autorapellidos)
-        libro = Libro(titulo, isbn)
-        libro.AñadirAutor(autor)
-        biblioteca.AñadirLibro(libro)
-        return biblioteca
-    def MostrarBiblioteca(biblioteca):
-        biblioteca.MostrarBiblioteca()
-    def BorrarLibro(biblioteca):
-        titulo = input("Introduzca el titulo del libro a borrar: ")
-        biblioteca.BorrarLibro(titulo)
+                print("Libro no encontrado")
+    
+def MostrarMenu():
+    print("\nMenu\n1) Añadir libro a la biblioteca\n2) Mostrar biblioteca\n3) Borrar libro\n4) ¿Numero de libros?\n5) Salir\n")
+    
+def AñadirLibroBiblioteca(biblioteca):
+    titulo = input("Insertar titulo del libro: ")
+    isbn = input("Inserta el ISBN del libro: ")
+    autornombre = input("Inserta el nombre del autor: ")
+    autorapellido = input("Insertar el apellido del autor: ")
+    autor = Autor(autornombre,autorapellido)
+    libro = Libro(titulo,isbn)
+    libro.AnadirAutor(autor)
+    biblioteca.AñadirLibro(libro)
+    return biblioteca
+def MostrarBiblioteca(biblioteca):
+    biblioteca.MostrarBiblioteca()
 
-    def NumeroLibros(biblioteca):
-        print("El numero de libros en la biblioteca es: ",biblioteca.NumeroLibros())
+def BorrarLibro(biblioteca):
+    titulo = input("Inserta el titulo del libro a borrar: ")
+    biblioteca.BorrarLibro(titulo)
+    
+def NumeroLibros(biblioteca):
+    print("El numero de libros en la biblioteca es: ",biblioteca.NumeroLibros())
+    
+    
+fin = False
+biblioteca = Biblioteca()
 
-    fin = False
-    biblioteca = Biblioteca()
-        
-    while not fin:
-        MostrarMenu()
-        opcion = int(input("Seleccione opcion:"))
-        if(opcion == 1):
-            biblioteca = AñadirLibroABiblioteca(biblioteca)
-        elif(opcion == 2):
-            MostrarBiblioteca(biblioteca)
-        elif(opcion == 3):
-            BorrarLibro(biblioteca)
-        elif(opcion == 4):
-            NumeroLibros(biblioteca)
-        elif(opcion == 5):
-            fin = True
-               
-    print("¡Adios!")
-             
+while not fin:
+    MostrarMenu()
+    opcion = int(input("Selecciona una opcion: "))
+    if(opcion == 1):
+        biblioteca = AñadirLibroBiblioteca(biblioteca)
+    elif(opcion == 2):
+        MostrarBiblioteca(biblioteca)
+    elif(opcion == 3):
+        BorrarLibro(biblioteca)
+    elif(opcion == 4):
+        NumeroLibros(biblioteca)
+    elif(opcion == 5):
+        fin = True
+print("Programa terminado")
